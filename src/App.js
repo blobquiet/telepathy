@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Image, Row, Col, Container } from "react-bootstrap";
+import "./App.scss"
 /* 
 
 var colors = ['#ff0000', '#00ff00', '#0000ff'];
@@ -20,13 +21,20 @@ function App() {
 
   return (
     <>
+    <div id="counter-app">
+    <div id="buttons-container" className="container">
+      <button id="increment-button" className="button" ><i className="fa fa-plus"></i></button>
+      <button id="decrement-button" className="button" ><i className="fa fa-minus"></i></button>
+      <button id="reset-button" className="button" ><i className="fa fa-refresh"></i></button>
+    </div>
+  </div>
       <div className="App App-header" style={{backgroundColor:backgroundColor}}>
-        <h1
+        {<h1
           className="animate__animated animate__bounce"
           style={{ fontSize: "2em" }}
         >
           Telepathy
-        </h1>
+        </h1>}
         {/* <Image width="180" height="170" src="logo512.png" roundedCircle />
         <Container>
           <Row>
@@ -41,7 +49,7 @@ function App() {
             </Col>
           </Row>
         </Container> */}
-      </div>
+      </div>  
       <div className="animate__animated animate__delay-2s animate__fadeIn">
         <h2
           style={{
