@@ -32,9 +32,13 @@ html, body {
   background: $background-color; */
 }
 
+.displayNone{
+  display: none;
+}
+
 
 #counter-app {
-  height: 50%;
+  height: 90%;
   width: 300px;
   
   position: absolute;
@@ -120,5 +124,10 @@ html, body {
     &:hover {
       box-shadow: $box-shadow-hover;
     }
+    &:focus{
+      outline: none;
+      box-shadow: 0 21px 36px rgba(0,0,0,0.25), 0 20px 20px rgba(0,0,0,0.22);
+      transform: scale(1.05);
+    } 
   }
 }
