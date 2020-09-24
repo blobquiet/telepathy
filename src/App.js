@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Image, Row, Col, Container } from "react-bootstrap";
@@ -13,11 +13,23 @@ function App() {
   
   const [displayNone, setDisplayNone] = useState("");
   const [fadeClassOut, setFadeOut] = useState("");
+  const [copySuccess, setCopySuccsess] = useState("");
+
+  const textAreaRef = useRef(null);
 
   const [backgroundColor, setBackgroundColor] = useState();
     var bgColor= ["rgb(186, 116, 233)", "rgb(116, 128, 233)",
-     "rgb(116, 233, 136)", "rgb(207 210 59)", "rgb(233, 178, 116)",
-    "rgb(233, 116, 116)", "rgb(116, 206, 233)"];
+     "rgb(116, 233, 136)", "rgb(255 193 7)", "rgb(255 155 44)",
+    "rgb(255 82 82)", "rgb(116, 206, 233)"];
+
+    const copyToClipboard = (e) => {
+      textAreaRef.current.select();
+      document.execCommand('copy');
+      // This is just personal preference.
+      // I prefer to not show the whole text area selected.
+      //e.target.focus();
+      setCopySuccsess("Copied!");
+    };
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,7 +53,7 @@ function App() {
       <div className="App App-header" style={{backgroundColor:backgroundColor}}>
         <h1          
           className={`animate__animated animate__bounce ${fadeClassOut} ${displayNone}`}
-          style={{ fontSize: "2em"}}
+          style={{ fontSize: "2.5em"}}
         >
           Telepathy
         </h1>
@@ -58,16 +70,25 @@ function App() {
         >
           Send this to your friend and wait for him/her to show up.
           <br/>
-          <br/>
-          <input value="https://gas7gahasdas.com" style={{
+          <br/><input onClick={() => copyToClipboard()} 
+          ref={textAreaRef}
+          value="https://gas7gahasdas.com" style={{
             fontSize: "0.8em",
             width: "15em",
             height: "2em",
             textAlign: "center",
             fontWeight: "400",
             borderRadius:"0.2em",
+            border:"none",
           }}
           />
+            <p style={{
+              position:"relative",
+            fontSize: "0.8em",
+            fontWeight: "500",
+            textAlign: "center",
+            marginTop: "0.5em",
+          }}>{copySuccess}</p>          
         </p>
         {/* <Image width="180" height="170" src="logo512.png" roundedCircle />
         <Container>
